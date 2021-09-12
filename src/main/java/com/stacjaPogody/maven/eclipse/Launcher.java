@@ -1,7 +1,6 @@
 package com.stacjaPogody.maven.eclipse;
 
 
-
 import javafx.application.Application;
 import javafx.stage.Stage;
 import com.stacjaPogody.maven.eclipse.View.ViewFactory;
