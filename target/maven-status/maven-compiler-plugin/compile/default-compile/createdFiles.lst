@@ -1,10 +1,10 @@
 com\stacjaPogody\maven\eclipse\Controller\SelectCitiesController.class
+com\stacjaPogody\maven\eclipse\Model\WeatherTable.class
 com\stacjaPogody\maven\eclipse\Controller\BaseController.class
-com\stacjaPogody\maven\eclipse\Model\City.class
 com\stacjaPogody\maven\eclipse\View\ViewFactory.class
 com\stacjaPogody\maven\eclipse\WeatherManager.class
 com\stacjaPogody\maven\eclipse\Controller\WeatherDataController.class
 module-info.class
 com\stacjaPogody\maven\eclipse\Launcher.class
 com\stacjaPogody\maven\eclipse\Model\WeatherForCity.class
-com\stacjaPogody\maven\eclipse\Model\Cities.class
+com\stacjaPogody\maven\eclipse\Model\APIConnector.class

@@ -4,6 +4,7 @@ module stacjaPogody {
 	requires java.desktop;
 	requires javafx.controls;
 	requires javafx.base;
+	requires json.simple;
 	
     opens com.stacjaPogody.maven.eclipse;
     opens com.stacjaPogody.maven.eclipse.View;

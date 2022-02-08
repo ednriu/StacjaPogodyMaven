@@ -2,25 +2,65 @@ package com.stacjaPogody.maven.eclipse;
 
 
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import java.text.ParseException;
+import java.util.List;
+
 import com.stacjaPogody.maven.eclipse.Model.WeatherForCity;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+
 public class WeatherManager {
-	ObservableList<String> cities = FXCollections.observableArrayList();
+	private WeatherForCity weatherForFirstCity;
+	private WeatherForCity weatherForSecondCity;
+
 	
 	WeatherManager()
 	{
-		WeatherForCity firstCity = new WeatherForCity("Kalwaria");
-		WeatherForCity secondCity = new WeatherForCity("Krak�w");
-
-		cities.add("Kalwaria");
-		cities.add("Krak�w");
-		cities.add("Warszawa");
+		weatherForFirstCity = new WeatherForCity();
+		weatherForSecondCity = new WeatherForCity();
+	}
+	//First City
+	public void setFirstCityName(String name) {
+		weatherForFirstCity.setCityName(name);
 	}
 	
-	public ObservableList<String> getCities(){
-		return cities;
+	public String getFirstCityName() {
+		return weatherForFirstCity.getCityName();
+	}
+	
+	public void setFirstCityInitialDate(String initialDate) {
+		this.weatherForFirstCity.setInitialDate(initialDate);
+	}
+	
+	public String getFirstCityInitialDate() {
+		return this.weatherForFirstCity.getInitialDate();
+	}
+	
+	public void addMinimumTemperatureForFirstCity(Float temperature) {
+		this.weatherForFirstCity.addMinimumTemperature(temperature);
+	}
+	
+	public List<Float> getMinimumTemperaturesForFirstCity(){
+		return this.weatherForFirstCity.getMinimumTemperatures();
+	}
+	
+	public void addMaximumTemperatureForFirstCity(Float temperature) {
+		this.weatherForFirstCity.addMaximumTemperature(temperature);
+	}
+	
+	public List<Float> getMaximumTemperaturesForFirstCity(){
+		return this.weatherForFirstCity.getMaximumTemperatures();
+	}
+	
+	//Second City
+	public void setSecondCityName(String name) {
+		weatherForSecondCity.setCityName(name);
+	}
+	
+	public String getSecondCityName() {
+		return weatherForSecondCity.getCityName();
 	}
 
 }

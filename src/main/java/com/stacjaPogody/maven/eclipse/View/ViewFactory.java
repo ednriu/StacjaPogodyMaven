@@ -26,10 +26,14 @@ public class ViewFactory {
     public void showCitySelectionWindow(){
         BaseController controller = new SelectCitiesController(this, weatherManager, "/View/citySelection.fxml");
         initializeStage(controller);
+        
+
+        
+       
     }
     
     public void showWeatherDataWindow(){
-        BaseController controller = new WeatherDataController(this, weatherManager, "/View/citySelection.fxml");
+        BaseController controller = new WeatherDataController(this, weatherManager, "/View/weatherData.fxml");
         initializeStage(controller);
     }
 
