@@ -65,11 +65,13 @@ public class WeatherDataController extends BaseController implements Initializab
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
 			// TODO Auto-generated method stub
-			 List<Integer> intValues = Arrays.asList(1, 2, 3, 4, 5);
-		     //List<String> stringValues = Arrays.asList("One", "Two", "Three", "Four", "Five");
-			 List<Float> temperatury = weatherManager.getMaximumTemperaturesForFirstCity();
-
-		        for (int i = 0; i < intValues.size() && i < temperatury.size(); i++) {
+			 
+			List<Float> maxTemperaturesFirstCity = weatherManager.getMaximumTemperaturesForFirstCity();
+			List<Float> minTemperaturesFirstCity = weatherManager.getMinimumTemperaturesForFirstCity();
+			List<Float> maxTemperaturesSecondCity = weatherManager.getMaximumTemperaturesForSecondCity();
+			List<Float> minTemperaturesSecondCity = weatherManager.getMinimumTemperaturesForSecondCity();
+		        
+			for (int i = 0; i < 5; i++) {
 		            weatherTable.getItems().add(i);
 		        }
 
@@ -77,20 +79,47 @@ public class WeatherDataController extends BaseController implements Initializab
 
 		        startDate = java.time.LocalDate.now();
 		        
-		        TableColumn<Integer, String> intColumn = new TableColumn<>("Data");
-		        intColumn.setCellValueFactory(cellData -> {
+		        TableColumn<Integer, String> dateColumn = new TableColumn<>("Data");
+		        dateColumn.setCellValueFactory(cellData -> {
 		            Integer rowIndex = cellData.getValue();
 		            return new ReadOnlyStringWrapper(String.valueOf(startDate.plusDays(rowIndex)));
 		        });
 
-		        TableColumn<Integer, String> nameColumn = new TableColumn<>("Temperatura Minimalna");
-		        nameColumn.setCellValueFactory(cellData -> {
+		        TableColumn<Integer, String> maxTempFirstCityColumn = new TableColumn<>("Max Temp.");
+		        maxTempFirstCityColumn.setCellValueFactory(cellData -> {
 		            Integer rowIndex = cellData.getValue();
-		            return new ReadOnlyStringWrapper(String.valueOf(temperatury.get(rowIndex)));
+		            return new ReadOnlyStringWrapper(String.valueOf(maxTemperaturesFirstCity.get(rowIndex)));
+		        });
+		        
+		        TableColumn<Integer, String> minTempFirstCityColumn = new TableColumn<>("Min Temp");
+		        minTempFirstCityColumn.setCellValueFactory(cellData -> {
+		            Integer rowIndex = cellData.getValue();
+		            return new ReadOnlyStringWrapper(String.valueOf(minTemperaturesFirstCity.get(rowIndex)));
 		        });
 
-		        weatherTable.getColumns().add(intColumn);
-		        weatherTable.getColumns().add(nameColumn);
+
+		        
+		        weatherTable.getColumns().add(dateColumn);     
+		        
+		        TableColumn firstCityNameCol = new TableColumn(weatherManager.getFirstCityName());
+		        firstCityNameCol.getColumns().addAll(maxTempFirstCityColumn, minTempFirstCityColumn);
+		        weatherTable.getColumns().add(firstCityNameCol);
+		        
+		        TableColumn<Integer, String> maxTempSecondCityColumn = new TableColumn<>("Max Temp.");
+		        maxTempSecondCityColumn.setCellValueFactory(cellData -> {
+		            Integer rowIndex = cellData.getValue();
+		            return new ReadOnlyStringWrapper(String.valueOf(maxTemperaturesSecondCity.get(rowIndex)));
+		        });
+		        
+		        TableColumn<Integer, String> minTempSecondCityColumn = new TableColumn<>("Min Temp");
+		        minTempSecondCityColumn.setCellValueFactory(cellData -> {
+		            Integer rowIndex = cellData.getValue();
+		            return new ReadOnlyStringWrapper(String.valueOf(minTemperaturesSecondCity.get(rowIndex)));
+		        });
+		        
+		        TableColumn secondCityNameCol = new TableColumn(weatherManager.getSecondCityName());
+		        secondCityNameCol.getColumns().addAll(maxTempSecondCityColumn, minTempSecondCityColumn);
+		        weatherTable.getColumns().add(secondCityNameCol);
 		        
 		}
 		

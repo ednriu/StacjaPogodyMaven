@@ -67,18 +67,26 @@ public class SelectCitiesController extends BaseController implements Initializa
 	    @FXML		
 	    void WybierzButtonAction(ActionEvent e) throws MalformedURLException {
 
+	//First City
 	    	weatherManager.setFirstCityName(editWyjazdZ.getText());
-	    	weatherManager.setFirstCityInitialDate(GetWeatherInformation(getWoeid(),0).get("applicable_date").toString());
-	    	for (int i = 0; i < 5; i++) {
-	    		weatherManager.addMinimumTemperatureForFirstCity(Float.parseFloat(GetWeatherInformation(getWoeid(),i).get("min_temp").toString()));
-	    	}
-	    	
-	    	for (int i = 0; i < 5; i++) {
-	    		weatherManager.addMaximumTemperatureForFirstCity(Float.parseFloat(GetWeatherInformation(getWoeid(),i).get("max_temp").toString()));
-	    	}
-	
 
+	    	for (int i = 0; i < 5; i++) {
+	    		weatherManager.addMinimumTemperatureForFirstCity(Float.parseFloat(GetWeatherInformation(getWoeid(editWyjazdZ.getText()),i).get("min_temp").toString()));
+	    	}
 	    	
+	    	for (int i = 0; i < 5; i++) {
+	    		weatherManager.addMaximumTemperatureForFirstCity(Float.parseFloat(GetWeatherInformation(getWoeid(editWyjazdZ.getText()),i).get("max_temp").toString()));
+	    	}
+	//Second City
+	    	weatherManager.setSecondCityName(editWyjazdDo.getText());
+	    	
+	    	for (int i = 0; i < 5; i++) {
+	    		weatherManager.addMinimumTemperatureForSecondCity(Float.parseFloat(GetWeatherInformation(getWoeid(editWyjazdDo.getText()),i).get("min_temp").toString()));
+	    	}
+	    	
+	    	for (int i = 0; i < 5; i++) {
+	    		weatherManager.addMaximumTemperatureForSecondCity(Float.parseFloat(GetWeatherInformation(getWoeid(editWyjazdDo.getText()),i).get("max_temp").toString()));
+	    	}	    	
 
 
 	        
@@ -92,9 +100,9 @@ public class SelectCitiesController extends BaseController implements Initializa
 
 	    }
 
-	    public String getWoeid() throws MalformedURLException {
+	    public String getWoeid(String cityName) throws MalformedURLException {
 	        APIConnector apiConnectorCity = new APIConnector(cityAPI);
-	        JSONObject jsonData = (JSONObject) (apiConnectorCity.getJSONArray(editWyjazdZ.getText())).get(0);
+	        JSONObject jsonData = (JSONObject) (apiConnectorCity.getJSONArray(cityName)).get(0);
 	        return jsonData.get("woeid").toString();
 	    }
 

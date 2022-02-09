@@ -30,14 +30,6 @@ public class WeatherManager {
 		return weatherForFirstCity.getCityName();
 	}
 	
-	public void setFirstCityInitialDate(String initialDate) {
-		this.weatherForFirstCity.setInitialDate(initialDate);
-	}
-	
-	public String getFirstCityInitialDate() {
-		return this.weatherForFirstCity.getInitialDate();
-	}
-	
 	public void addMinimumTemperatureForFirstCity(Float temperature) {
 		this.weatherForFirstCity.addMinimumTemperature(temperature);
 	}
@@ -61,6 +53,22 @@ public class WeatherManager {
 	
 	public String getSecondCityName() {
 		return weatherForSecondCity.getCityName();
+	}
+	
+	public void addMinimumTemperatureForSecondCity(Float temperature) {
+		this.weatherForSecondCity.addMinimumTemperature(temperature);
+	}
+	
+	public List<Float> getMinimumTemperaturesForSecondCity(){
+		return this.weatherForSecondCity.getMinimumTemperatures();
+	}
+	
+	public void addMaximumTemperatureForSecondCity(Float temperature) {
+		this.weatherForSecondCity.addMaximumTemperature(temperature);
+	}
+	
+	public List<Float> getMaximumTemperaturesForSecondCity(){
+		return this.weatherForSecondCity.getMaximumTemperatures();
 	}
 
 }
